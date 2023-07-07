@@ -24,11 +24,11 @@ trans = transforms.Compose([
     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     ])
 
-net = torch.load('result/model.pth')
+net = torch.load('model.pth')
 
-baofu = Image.open('baofu.png')
-x = trans(baofu).reshape((1,3,224,224))
+img = Image.open('baofu.png')
+x = trans(img).reshape((1,3,224,224))
 x.to(device)
 y = net(x)
 print(y.argmax(axis=1).item())
-plt.imshow(baofu)
+plt.imshow(img)
